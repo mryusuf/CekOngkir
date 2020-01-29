@@ -36,7 +36,7 @@
 		82F2D92E23E053FD00928095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82F2D92C23E053FD00928095 /* LaunchScreen.storyboard */; };
 		82F2D93923E053FD00928095 /* CekOngkirTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2D93823E053FD00928095 /* CekOngkirTests.swift */; };
 		82F2D94623E0565900928095 /* Province.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2D94523E0565900928095 /* Province.swift */; };
-		82F2D94823E0566700928095 /* Kota.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2D94723E0566700928095 /* Kota.swift */; };
+		82F2D94823E0566700928095 /* RajaOngkirCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2D94723E0566700928095 /* RajaOngkirCost.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +83,7 @@
 		82F2D93823E053FD00928095 /* CekOngkirTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CekOngkirTests.swift; sourceTree = "<group>"; };
 		82F2D93A23E053FD00928095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82F2D94523E0565900928095 /* Province.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Province.swift; sourceTree = "<group>"; };
-		82F2D94723E0566700928095 /* Kota.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kota.swift; sourceTree = "<group>"; };
+		82F2D94723E0566700928095 /* RajaOngkirCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RajaOngkirCost.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,7 +227,7 @@
 				825FDD6F23E12CBF0046E3A2 /* Tbl_City+CoreDataClass.swift */,
 				825FDD7023E12CBF0046E3A2 /* Tbl_City+CoreDataProperties.swift */,
 				82F2D94523E0565900928095 /* Province.swift */,
-				82F2D94723E0566700928095 /* Kota.swift */,
+				82F2D94723E0566700928095 /* RajaOngkirCost.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -342,7 +342,7 @@
 				82F2D91F23E053FC00928095 /* AppDelegate.swift in Sources */,
 				825FDD3823E06DD10046E3A2 /* HomeInteractor.swift in Sources */,
 				825FDD8D23E1461E0046E3A2 /* ListProvinciesCitiesInteractor.swift in Sources */,
-				82F2D94823E0566700928095 /* Kota.swift in Sources */,
+				82F2D94823E0566700928095 /* RajaOngkirCost.swift in Sources */,
 				825FDD8C23E1461E0046E3A2 /* ListProvinciesCitiesViewController.swift in Sources */,
 				82F2D92123E053FC00928095 /* SceneDelegate.swift in Sources */,
 				825FDD8A23E1461E0046E3A2 /* ListProvinciesCitiesRouter.swift in Sources */,

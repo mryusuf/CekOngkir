@@ -14,14 +14,18 @@ import UIKit
 
 protocol HomeDisplayLogic: class
 {
-  func displaySomething(viewModel: Home.FetchRajaOngkir.ViewModel)
+  func displayFetchedCities(viewModel: Home.FetchRajaOngkir.ViewModel)
+    func displayFetchedCosts(viewModel: Home.QueryOngkir.ViewModel)
 }
 
-class HomeViewController: UIViewController, HomeDisplayLogic
+class HomeViewController: UIViewController, HomeDisplayLogic, UIPickerViewDelegate, UIPickerViewDataSource
 {
+    
   var interactor: HomeBusinessLogic?
   var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
-
+  var selectedOriginCityID = ""
+  var selectedDestinationCityID = ""
+    
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -67,27 +71,214 @@ class HomeViewController: UIViewController, HomeDisplayLogic
   // MARK: View lifecycle
   
     override func viewWillAppear(_ animated: Bool) {
-//        fetchProvincesApi()
-//        fetchCitiesApi()
-//        fetchProvincesLocal()
+        checkIfFirstLaunch()
+        fetchCitiesLocal()
+    }
+    
+    func checkIfFirstLaunch() {
+        let preloaded = UserDefaults.standard.bool(forKey: "hasPreloadData")
+        if !preloaded {
+            fetchProvincesApi()
+            fetchCitiesApi()
+            UserDefaults.standard.set(true, forKey: "hasPreloadData")
+        }
     }
   override func viewDidLoad()
   {
     super.viewDidLoad()
-//    doSomething()
+    setOriginCityPickerView()
+    setDestinationCityPickerView()
+    setCouriersPickerView()
+    setupForm()
   }
   
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
+    var displayedCities: [Home.FetchRajaOngkir.ViewModel.displayedCity] = []
+    var originCityPicker: UIPickerView!
+    var destinationCityPicker: UIPickerView!
+    var couriersPicker: UIPickerView!
+  func displayFetchedCities(viewModel: Home.FetchRajaOngkir.ViewModel)
+  {
+    displayedCities = viewModel.displayedCities
+    originCityPicker.reloadAllComponents()
+    destinationCityPicker.reloadAllComponents()
+  }
+
+    
+    var costs: [Home.QueryOngkir.ViewModel.displayedCost] = []
+    func displayFetchedCosts(viewModel: Home.QueryOngkir.ViewModel) {
+        costs = viewModel.displayedCosts
+        var strResult = ""
+        for cost in costs {
+            strResult.append("Paket: \(cost.service) (\(cost.description)) \nBiaya: \(cost.cost.description) \nEstimasi: \(cost.etd) hari\n\n")
+        }
+        print(strResult)
+        resultLabel.text = strResult
+    }
+    
+    
+    let originTextField:UITextField = {
+        let textField = UITextField(frame: CGRect(x: 20, y: 60, width: 300, height: 44))
+        textField.backgroundColor = .white
+        textField.placeholder = "Pilih Kota Asal"
+        textField.textColor = .black
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+    
+    let destinationTextField:UITextField = {
+        let textField = UITextField(frame: CGRect(x: 20, y: 114, width: 300, height: 44))
+        textField.backgroundColor = .white
+        textField.placeholder = "Pilih Kota Tujuan"
+        textField.textColor = .black
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+    
+    let weightTextField:UITextField = {
+        let textField = UITextField(frame: CGRect(x: 20, y: 168, width: 300, height: 44))
+        textField.backgroundColor = .white
+        textField.placeholder = "Masukkan Berat Paket (gram)"
+        textField.textColor = .black
+        textField.keyboardType = .numberPad
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+    
+    let courierTextField:UITextField = {
+        let textField = UITextField(frame: CGRect(x: 20, y: 222, width: 300, height: 44))
+        textField.backgroundColor = .white
+        textField.placeholder = "Pilih Kurir"
+        textField.textColor = .black
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+    
+    let checkButton:UIButton = {
+        let btn = UIButton(type:.system)
+        btn.backgroundColor = .blue
+        btn.setTitle("Cek Ongkir", for: .normal)
+        btn.tintColor = .cyan
+        btn.layer.cornerRadius = 5
+        btn.clipsToBounds = true
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
+    var resultLabel: UILabel!
+
+    func setupForm() {
+        originTextField.inputView = originCityPicker
+        destinationTextField.inputView = destinationCityPicker
+        courierTextField.inputView = couriersPicker
+        self.view.addSubview(originTextField)
+        self.view.addSubview(destinationTextField)
+        self.view.addSubview(weightTextField)
+        self.view.addSubview(courierTextField)
+        self.view.addSubview(checkButton)
+        
+        
+        checkButton.topAnchor.constraint(equalTo:courierTextField.bottomAnchor, constant:30).isActive = true
+        checkButton.leftAnchor.constraint(equalTo:view.leftAnchor, constant:20).isActive = true
+        checkButton.rightAnchor.constraint(equalTo:view.rightAnchor, constant:-20).isActive = true
+        checkButton.heightAnchor.constraint(equalToConstant:50).isActive = true
+        checkButton.addTarget(self, action: #selector(checkButtonPressed), for: .touchUpInside)
+        
+        resultLabel = UILabel(frame: CGRect(x: 20, y: 300, width: view.frame.width - 40, height: 300))
+        resultLabel.numberOfLines = 0
+        self.view.addSubview(resultLabel)
+        resultLabel.topAnchor.constraint(equalTo:checkButton.bottomAnchor, constant:40).isActive = true
+        resultLabel.leftAnchor.constraint(equalTo:view.leftAnchor, constant:20).isActive = true
+        resultLabel.rightAnchor.constraint(equalTo:view.rightAnchor, constant:-20).isActive = true
+        resultLabel.heightAnchor.constraint(equalToConstant:300).isActive = true
+    }
+    
+    @objc func checkButtonPressed(sender:UIButton!) {
+        guard originTextField.text != "", destinationTextField.text != "", weightTextField.text != "", courierTextField.text != "" else {return}
+        let request = Home.QueryOngkir.Request(queryOngkirFormFields: Home.QueryOngkirFormFields(origin: selectedOriginCityID, destination: selectedDestinationCityID, weight: Int(weightTextField.text ?? "") ?? 0, courier: courierTextField.text?.lowercased() ?? ""))
+        print("Query Request= \(request)")
+        interactor?.fetchCostRajaOngkirAPI(request: request)
+    }
+    
+    // MARK: OriginCityPickerView
+    func setOriginCityPickerView() {
+        originCityPicker = UIPickerView()
+        originCityPicker.delegate = self as UIPickerViewDelegate
+        originCityPicker.dataSource = self as UIPickerViewDataSource
+        originCityPicker.tag = Home.PickerViewTag.OriginCityPickerView.rawValue
+
+        
+    }
+    
+    func setDestinationCityPickerView() {
+        destinationCityPicker = UIPickerView()
+        destinationCityPicker.delegate = self as UIPickerViewDelegate
+        destinationCityPicker.dataSource = self as UIPickerViewDataSource
+        destinationCityPicker.tag = Home.PickerViewTag.DestinationCityPickerView.rawValue
+
+    }
+    
+    func setCouriersPickerView() {
+        couriersPicker = UIPickerView()
+        couriersPicker.delegate = self as UIPickerViewDelegate
+        couriersPicker.dataSource = self as UIPickerViewDataSource
+        couriersPicker.tag = Home.PickerViewTag.CourierPickerView.rawValue
+    }
+    
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch pickerView.tag {
+        case Home.PickerViewTag.OriginCityPickerView.rawValue:
+            return displayedCities.count
+        case Home.PickerViewTag.DestinationCityPickerView.rawValue:
+            return displayedCities.count
+        case Home.PickerViewTag.CourierPickerView.rawValue:
+            return (interactor?.couriers.count)!
+        default:
+            return 1
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    {
+        switch pickerView.tag {
+        case Home.PickerViewTag.OriginCityPickerView.rawValue:
+            return displayedCities[row].cityName.description
+        case Home.PickerViewTag.DestinationCityPickerView.rawValue:
+            return displayedCities[row].cityName.description
+        case Home.PickerViewTag.CourierPickerView.rawValue:
+            return interactor?.couriers[row]
+        default:
+            return ""
+        }
+        
+
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        switch pickerView.tag {
+        case Home.PickerViewTag.OriginCityPickerView.rawValue:
+            originTextField.text = displayedCities[row].cityName.description
+            selectedOriginCityID = displayedCities[row].cityId
+        case Home.PickerViewTag.DestinationCityPickerView.rawValue:
+            destinationTextField.text = displayedCities[row].cityName.description
+            selectedDestinationCityID = displayedCities[row].cityId
+        case Home.PickerViewTag.CourierPickerView.rawValue:
+            courierTextField.text = interactor?.couriers[row]
+        default:
+            ""
+        }
+    }
+    
     func fetchProvincesApi() {
         let request = Home.FetchRajaOngkir.Request()
         interactor?.fetchProvincesRajaOngkirAPI(request: request)
     }
-    func fetchProvincesLocal() {
-        let request = Home.FetchRajaOngkir.Request()
-        interactor?.fetchProvincesLocal(request: request)
-    }
+
     
     func fetchCitiesApi() {
         let request = Home.FetchRajaOngkir.Request()
@@ -95,16 +286,9 @@ class HomeViewController: UIViewController, HomeDisplayLogic
     }
     func fetchCitiesLocal() {
         let request = Home.FetchRajaOngkir.Request()
-//        interactor?.fetchCitiesLocal(request: request)
+        interactor?.fetchCitiesLocal(request: request)
     }
-//  func doSomething()
-//  {
-//    let request = Home.Something.Request()
-//    interactor?.doSomething(request: request)
-//  }
+
   
-  func displaySomething(viewModel: Home.FetchRajaOngkir.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+  
 }

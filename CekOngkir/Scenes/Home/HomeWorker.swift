@@ -13,10 +13,57 @@
 import UIKit
 
 class HomeWorker {
-    func doSomeWork() {
-    }
-    
-    func getProvince() {
+    var costsFetch: CostsFetchProtocol
         
+        init(costsFetch: CostsFetchProtocol) {
+            self.costsFetch = costsFetch
+        }
+        
+
+        
+    func fetchCosts(query: Home.QueryOngkirFormFields ,completionHandler: @escaping ([Costs]?) -> Void) {
+        costsFetch.fetchCosts(query: query) { (Costs: () throws -> [Costs]?) -> Void in
+            do {
+              let costs = try Costs()
+              DispatchQueue.main.async {
+                completionHandler(costs)
+              }
+            } catch {
+              DispatchQueue.main.async {
+                completionHandler(nil)
+              }
+            }
+          }
+        }
+        
+    
     }
-}
+
+    // MARK: - Ongkir Fetch API
+
+    protocol CostsFetchProtocol {
+      
+        func fetchCosts(query: Home.QueryOngkirFormFields ,completionHandler: @escaping (() throws -> [Costs]?) -> Void)
+      
+    }
+
+    // MARK: - Ongkir Fetch CRUD operation results
+
+    typealias CostsFetchFetchOngkirCompletionHandler = (CostsFetchResult<ResultCosts>) -> Void
+
+    enum CostsFetchResult<U>
+    {
+      case Success(result: U)
+      case Failure(error: CostsFetchError)
+    }
+
+
+    // MARK: - Ongkir Fetch CRUD operation errors
+
+    enum CostsFetchError: Equatable, Error
+    {
+      case CannotFetch(String)
+      case CannotCreate(String)
+      case CannotUpdate(String)
+      case CannotDelete(String)
+    }

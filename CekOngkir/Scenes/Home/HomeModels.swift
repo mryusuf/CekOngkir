@@ -16,28 +16,53 @@ enum Home
 {
   // MARK: Use cases
   
-  enum FetchRajaOngkir
-  {
-    struct Request
+    enum FetchRajaOngkir
     {
-    }
-    struct Response
-    {
-        var provinces: [Province]
-    }
-    struct ViewModel
-    {
-        struct displayedProvince {
-            var province: String
+        struct Request
+        {
         }
-        struct displayedCity {
-            var cityName: String
+        struct Response
+        {
+            //        var provinces: [Province]
+            var cities: [City]
         }
-        var displayedProvinces: [displayedProvince]
-        var displayedCities: [displayedCity]
+        struct ViewModel
+        {
+            //        struct displayedProvince {
+            //            var province: String
+            //        }
+            struct displayedCity {
+                var cityName: String
+                var cityId: String
+            }
+            //        var displayedProvinces: [displayedProvince]
+            var displayedCities: [displayedCity]
+        }
     }
-  }
     
+    struct QueryOngkirFormFields {
+        var origin: String
+        var destination: String
+        var weight: Int
+        var courier: String
+    }
+    enum QueryOngkir {
+        struct Request {
+            var queryOngkirFormFields: QueryOngkirFormFields
+        }
+        struct Response {
+            var costs: [Costs]
+        }
+        struct ViewModel {
+            struct displayedCost {
+                var service: String
+                var description: String
+                var cost: Int
+                var etd: String
+            }
+            var displayedCosts: [displayedCost]
+        }
+    }
     enum SaveToLocal {
         struct Request {
             var provinces: Province
@@ -49,5 +74,11 @@ enum Home
         struct ViewModel {
             
         }
+    }
+    
+    enum PickerViewTag: Int {
+        case OriginCityPickerView = 0
+        case DestinationCityPickerView = 1
+        case CourierPickerView = 2
     }
 }

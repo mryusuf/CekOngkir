@@ -8,12 +8,13 @@
 
 import Foundation
 
-class RajaOngkirAPI: ProvincesStoreProtocol, CitiesStoreProtocol {
+class RajaOngkirAPI: ProvincesStoreProtocol, CitiesStoreProtocol, CostsFetchProtocol {
     
     private let baseUrl = "https://api.rajaongkir.com/starter/"
     private let headers = ["key": "0df6d5bf733214af6c6644eb8717c92c"]
     static var provinces: [Province] = []
     static var cities: [City] = []
+    static var costs: [Costs] = []
     
     // MARK: ProvincesStoreProtocol
     func fetchProvinces(completionHandler: @escaping (() throws -> [Province]) -> Void) {
@@ -84,7 +85,7 @@ class RajaOngkirAPI: ProvincesStoreProtocol, CitiesStoreProtocol {
             do {
                 let downloadedCities = try decoder.decode(RajaOngkirCity.self, from: responsData)
                 let cities = downloadedCities.rajaongkir.results
-//                print("CITIES ARE \(cities)")
+                print("Cities are \(cities)")
                 type(of: self).cities = cities
                 completionHandler { return type(of: self).cities }
             } catch {
@@ -112,5 +113,45 @@ class RajaOngkirAPI: ProvincesStoreProtocol, CitiesStoreProtocol {
         
     }
     
+    // MARK: FetchOngkir
+    func fetchCosts(query: Home.QueryOngkirFormFields ,completionHandler: @escaping (() throws -> [Costs]?) -> Void) {
+        print("Start Request Province")
+                let postHeaders = ["key": "0df6d5bf733214af6c6644eb8717c92c",
+        "content-type": "application/x-www-form-urlencoded"]
+        
+        let postData = NSMutableData(data: "origin=\(query.origin)".data(using: String.Encoding.utf8)!)
+        postData.append("&destination=\(query.destination)".data(using: String.Encoding.utf8)!)
+        postData.append("&weight=\(query.weight)".data(using: String.Encoding.utf8)!)
+        postData.append("&courier=\(query.courier)".data(using: String.Encoding.utf8)!)
+        
+                let request = NSMutableURLRequest(url: URL(string: baseUrl+"cost")!)
+                request.httpMethod = "POST"
+                request.allHTTPHeaderFields = postHeaders
+        request.httpBody = postData as Data
+                let session = URLSession.shared
+                let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+                  if (error != nil) {
+                    print(error ?? "")
+                  } else {
+                    guard let responsData = data, response != nil else { print("Something Wrong")
+                        return
+                    }
+                    print("DATA COST =  \(String(NSString(data: responsData, encoding: String.Encoding.utf8.rawValue) ?? ""))")
+                    let httpResponse = response as? HTTPURLResponse
+                    print(httpResponse!)
+                    let decoder = JSONDecoder()
+                    do {
+                        let fetchedCosts = try decoder.decode(RajaOngkirCost.self, from: responsData)
+                        let costs = fetchedCosts.rajaongkir.results[0].costs
+                        type(of: self).costs = costs!
+                        completionHandler { return type(of: self).costs }
+                    } catch {
+                        print(error)
+                    }
+                  }
+                })
+
+                dataTask.resume()
+    }
     
 }

@@ -27,7 +27,7 @@ class RajaOngkirCoreData: ProvincesStoreProtocol, CitiesStoreProtocol {
             print(provinces)
             completionHandler { return provinces }
           } catch {
-            completionHandler { throw ProvincesStoreError.CannotFetch("Cannot fetch orders") }
+            completionHandler { throw ProvincesStoreError.CannotFetch("Cannot fetch provinces") }
           }
         
     }
@@ -71,7 +71,20 @@ class RajaOngkirCoreData: ProvincesStoreProtocol, CitiesStoreProtocol {
     // MARK: CitiesStoreProtocol
 
     func fetchCities(completionHandler: @escaping (() throws -> [City]) -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
         
+        let managedContext = appDelegate.persistentContainer.viewContext
+          do {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Tbl_City")
+            let results = try managedContext.fetch(fetchRequest) as! [Tbl_City]
+            let cities = results.map { $0.toCity() }
+//            print(cities)
+            completionHandler { return cities }
+          } catch {
+            completionHandler { throw CitiesStoreError.CannotFetch("Cannot fetch cities") }
+          }
     }
     
     func fetchCities(id: String, completionHandler: @escaping (() throws -> City?) -> Void) {
@@ -102,7 +115,7 @@ class RajaOngkirCoreData: ProvincesStoreProtocol, CitiesStoreProtocol {
             
             try managedContext.save()
 
-            print("City IS \(String(describing: tblCity.city_name))")
+//            print("City IS \(String(describing: tblCity.city_name))")
             completionHandler { return city }
         }
         catch {

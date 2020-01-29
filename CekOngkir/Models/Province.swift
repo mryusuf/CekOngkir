@@ -33,7 +33,6 @@ struct City: Codable {
     let city_id: String?
     let province_id: String?
     let province: String?
-    let type: String?
     let city_name: String?
     let postal_code: String?
 }

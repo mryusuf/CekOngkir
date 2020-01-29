@@ -16,32 +16,34 @@ protocol HomeBusinessLogic
 {
   func fetchProvincesRajaOngkirAPI(request: Home.FetchRajaOngkir.Request)
     func fetchCitiesRajaOngkirAPI(request: Home.FetchRajaOngkir.Request)
-    func fetchProvincesLocal(request: Home.FetchRajaOngkir.Request)
+    func fetchCitiesLocal(request: Home.FetchRajaOngkir.Request)
+    var couriers: [String] {get}
+    func fetchCostRajaOngkirAPI(request: Home.QueryOngkir.Request)
 }
 
 protocol HomeDataStore
 {
-  //var name: String { get set }
+
     var provinces: [Province]? {get}
 }
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore
 {
   var presenter: HomePresentationLogic?
-  var worker: HomeWorker?
+  
+    let couriers = ["JNE", "POS Indonesia", "TIKI"]
     var provinceWorkerAPI = ProvinceWorker(provinceStore: RajaOngkirAPI())
     // MARK: create provinceWorkerCoreData
     var provinceWorkerCoreData = ProvinceWorker(provinceStore: RajaOngkirCoreData())
     var citiesWorkerAPI = CitiesWorker(citiesStore: RajaOngkirAPI())
     var citiesWorkerCoreData = CitiesWorker(citiesStore: RajaOngkirCoreData())
-    
+    var costWorker = HomeWorker(costsFetch: RajaOngkirAPI())
     var provinces: [Province]?
     var cities: [City]?
-
+    var costs: [Costs]?
   func fetchProvincesRajaOngkirAPI(request: Home.FetchRajaOngkir.Request)
   {
-//    worker = HomeWorker()
-//    worker?.doSomeWork()
+
     print("Start fetching Provinces from RajaOngkir API")
     provinceWorkerAPI.fetchProvinces { (provinces) -> Void in
         self.provinces = provinces
@@ -51,11 +53,7 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore
             }
         }
     }
-    // MARK: store fetched provinces to CoreData using provinceWorkerCoreData
-//    guard provinces!.count > 0 else{return}
-    
-//    let response = Home.Something.Response(provinces: provinces)
-//    presenter?.presentSomething(response: response)
+
   }
     func fetchCitiesRajaOngkirAPI(request: Home.FetchRajaOngkir.Request) {
         print("Start fetching Cities from RajaOngkir API")
@@ -68,11 +66,22 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore
             }
         }
     }
-    func fetchProvincesLocal(request: Home.FetchRajaOngkir.Request) {
-        provinceWorkerCoreData.fetchProvinces { (provinces) -> Void in
-            self.provinces = provinces
+    func fetchCitiesLocal(request: Home.FetchRajaOngkir.Request) {
+        citiesWorkerCoreData.fetchCities { (cities) -> Void in
+            self.cities = cities
             // presenter do something pls
+            let response = Home.FetchRajaOngkir.Response(cities: cities)
+            self.presenter?.presentFetchedCities(response: response)
         }
-        
+    }
+    
+    func fetchCostRajaOngkirAPI(request: Home.QueryOngkir.Request) {
+        let query = request.queryOngkirFormFields
+        costWorker.fetchCosts(query: query) { (costs) -> Void in
+            self.costs = costs
+//            print("The Costs available are \(costs?.description)")
+            let response = Home.QueryOngkir.Response(costs: costs!)
+            self.presenter?.presentFetchedCosts(response: response)
+        }
     }
 }

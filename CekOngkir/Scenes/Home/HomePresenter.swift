@@ -14,18 +14,34 @@ import UIKit
 
 protocol HomePresentationLogic
 {
-  func presentSomething(response: Home.FetchRajaOngkir.Response)
+    func presentFetchedCities(response: Home.FetchRajaOngkir.Response)
+    func presentFetchedCosts(response: Home.QueryOngkir.Response)
 }
 
 class HomePresenter: HomePresentationLogic
 {
+
+    
   weak var viewController: HomeDisplayLogic?
   
-  // MARK: Do something
-  
-  func presentSomething(response: Home.FetchRajaOngkir.Response)
-  {
-//    let viewModel = Home.Something.ViewModel()
-//    viewController?.displaySomething(viewModel: viewModel)
-  }
+    func presentFetchedCities(response: Home.FetchRajaOngkir.Response) {
+        var displayedCities: [Home.FetchRajaOngkir.ViewModel.displayedCity] = []
+        for city in response.cities {
+            let displayedCity = Home.FetchRajaOngkir.ViewModel.displayedCity(cityName: city.city_name!, cityId: city.city_id!)
+            displayedCities.append(displayedCity)
+        }
+        let viewModel = Home.FetchRajaOngkir.ViewModel(displayedCities: displayedCities)
+        viewController?.displayFetchedCities(viewModel: viewModel)
+    }
+    func presentFetchedCosts(response: Home.QueryOngkir.Response) {
+        var displayedCosts: [Home.QueryOngkir.ViewModel.displayedCost] = []
+        for cost in response.costs {
+            print("The cost is \(cost)")
+
+            let displayedCost = Home.QueryOngkir.ViewModel.displayedCost(service: cost.service ?? "", description: cost.description ?? "", cost: cost.cost[0].value ?? 0, etd: cost.cost[0].etd ?? "")
+            displayedCosts.append(displayedCost)
+        }
+        let viewModel = Home.QueryOngkir.ViewModel(displayedCosts: displayedCosts)
+        viewController?.displayFetchedCosts(viewModel: viewModel)
+    }
 }
