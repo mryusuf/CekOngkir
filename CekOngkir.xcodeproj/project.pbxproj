@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		825FDD3323E06DD10046E3A2 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD2D23E06DD10046E3A2 /* HomePresenter.swift */; };
+		825FDD3423E06DD10046E3A2 /* HomeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD2E23E06DD10046E3A2 /* HomeWorker.swift */; };
+		825FDD3523E06DD10046E3A2 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD2F23E06DD10046E3A2 /* HomeRouter.swift */; };
+		825FDD3623E06DD10046E3A2 /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD3023E06DD10046E3A2 /* HomeModels.swift */; };
+		825FDD3723E06DD10046E3A2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD3123E06DD10046E3A2 /* HomeViewController.swift */; };
+		825FDD3823E06DD10046E3A2 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD3223E06DD10046E3A2 /* HomeInteractor.swift */; };
+		825FDD3B23E077290046E3A2 /* RajaOngkirAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD3A23E077290046E3A2 /* RajaOngkirAPI.swift */; };
+		825FDD3E23E077F20046E3A2 /* ProvinceWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD3D23E077F20046E3A2 /* ProvinceWorker.swift */; };
+		825FDD4023E127C90046E3A2 /* RajaOngkirCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD3F23E127C90046E3A2 /* RajaOngkirCoreData.swift */; };
+		825FDD7123E12CBF0046E3A2 /* Tbl_Province+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD6D23E12CBF0046E3A2 /* Tbl_Province+CoreDataClass.swift */; };
+		825FDD7223E12CBF0046E3A2 /* Tbl_Province+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD6E23E12CBF0046E3A2 /* Tbl_Province+CoreDataProperties.swift */; };
+		825FDD7323E12CBF0046E3A2 /* Tbl_City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD6F23E12CBF0046E3A2 /* Tbl_City+CoreDataClass.swift */; };
+		825FDD7423E12CBF0046E3A2 /* Tbl_City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD7023E12CBF0046E3A2 /* Tbl_City+CoreDataProperties.swift */; };
+		825FDD8823E1461E0046E3A2 /* ListProvinciesCitiesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD8223E1461E0046E3A2 /* ListProvinciesCitiesPresenter.swift */; };
+		825FDD8923E1461E0046E3A2 /* ListProvinciesCitiesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD8323E1461E0046E3A2 /* ListProvinciesCitiesWorker.swift */; };
+		825FDD8A23E1461E0046E3A2 /* ListProvinciesCitiesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD8423E1461E0046E3A2 /* ListProvinciesCitiesRouter.swift */; };
+		825FDD8B23E1461E0046E3A2 /* ListProvinciesCitiesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD8523E1461E0046E3A2 /* ListProvinciesCitiesModels.swift */; };
+		825FDD8C23E1461E0046E3A2 /* ListProvinciesCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD8623E1461E0046E3A2 /* ListProvinciesCitiesViewController.swift */; };
+		825FDD8D23E1461E0046E3A2 /* ListProvinciesCitiesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD8723E1461E0046E3A2 /* ListProvinciesCitiesInteractor.swift */; };
+		825FDD8F23E146720046E3A2 /* CitiesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825FDD8E23E146720046E3A2 /* CitiesWorker.swift */; };
 		82F2D91F23E053FC00928095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2D91E23E053FC00928095 /* AppDelegate.swift */; };
 		82F2D92123E053FC00928095 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2D92023E053FC00928095 /* SceneDelegate.swift */; };
 		82F2D92323E053FC00928095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2D92223E053FC00928095 /* ViewController.swift */; };
@@ -15,6 +35,8 @@
 		82F2D92B23E053FD00928095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82F2D92A23E053FD00928095 /* Assets.xcassets */; };
 		82F2D92E23E053FD00928095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82F2D92C23E053FD00928095 /* LaunchScreen.storyboard */; };
 		82F2D93923E053FD00928095 /* CekOngkirTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2D93823E053FD00928095 /* CekOngkirTests.swift */; };
+		82F2D94623E0565900928095 /* Province.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2D94523E0565900928095 /* Province.swift */; };
+		82F2D94823E0566700928095 /* Kota.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2D94723E0566700928095 /* Kota.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +50,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		825FDD2D23E06DD10046E3A2 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		825FDD2E23E06DD10046E3A2 /* HomeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorker.swift; sourceTree = "<group>"; };
+		825FDD2F23E06DD10046E3A2 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		825FDD3023E06DD10046E3A2 /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
+		825FDD3123E06DD10046E3A2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		825FDD3223E06DD10046E3A2 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		825FDD3A23E077290046E3A2 /* RajaOngkirAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RajaOngkirAPI.swift; sourceTree = "<group>"; };
+		825FDD3D23E077F20046E3A2 /* ProvinceWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceWorker.swift; sourceTree = "<group>"; };
+		825FDD3F23E127C90046E3A2 /* RajaOngkirCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RajaOngkirCoreData.swift; sourceTree = "<group>"; };
+		825FDD6D23E12CBF0046E3A2 /* Tbl_Province+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tbl_Province+CoreDataClass.swift"; sourceTree = "<group>"; };
+		825FDD6E23E12CBF0046E3A2 /* Tbl_Province+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tbl_Province+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		825FDD6F23E12CBF0046E3A2 /* Tbl_City+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tbl_City+CoreDataClass.swift"; sourceTree = "<group>"; };
+		825FDD7023E12CBF0046E3A2 /* Tbl_City+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tbl_City+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		825FDD8223E1461E0046E3A2 /* ListProvinciesCitiesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProvinciesCitiesPresenter.swift; sourceTree = "<group>"; };
+		825FDD8323E1461E0046E3A2 /* ListProvinciesCitiesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProvinciesCitiesWorker.swift; sourceTree = "<group>"; };
+		825FDD8423E1461E0046E3A2 /* ListProvinciesCitiesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProvinciesCitiesRouter.swift; sourceTree = "<group>"; };
+		825FDD8523E1461E0046E3A2 /* ListProvinciesCitiesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProvinciesCitiesModels.swift; sourceTree = "<group>"; };
+		825FDD8623E1461E0046E3A2 /* ListProvinciesCitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProvinciesCitiesViewController.swift; sourceTree = "<group>"; };
+		825FDD8723E1461E0046E3A2 /* ListProvinciesCitiesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProvinciesCitiesInteractor.swift; sourceTree = "<group>"; };
+		825FDD8E23E146720046E3A2 /* CitiesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesWorker.swift; sourceTree = "<group>"; };
 		82F2D91B23E053FC00928095 /* CekOngkir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CekOngkir.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F2D91E23E053FC00928095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82F2D92023E053FC00928095 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +82,8 @@
 		82F2D93423E053FD00928095 /* CekOngkirTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CekOngkirTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F2D93823E053FD00928095 /* CekOngkirTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CekOngkirTests.swift; sourceTree = "<group>"; };
 		82F2D93A23E053FD00928095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82F2D94523E0565900928095 /* Province.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Province.swift; sourceTree = "<group>"; };
+		82F2D94723E0566700928095 /* Kota.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kota.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +104,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		825FDD2B23E06D480046E3A2 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				825FDD7523E144950046E3A2 /* ListProvincesCities */,
+				825FDD2C23E06DAD0046E3A2 /* Home */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		825FDD2C23E06DAD0046E3A2 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				825FDD2D23E06DD10046E3A2 /* HomePresenter.swift */,
+				825FDD2E23E06DD10046E3A2 /* HomeWorker.swift */,
+				825FDD2F23E06DD10046E3A2 /* HomeRouter.swift */,
+				825FDD3023E06DD10046E3A2 /* HomeModels.swift */,
+				825FDD3123E06DD10046E3A2 /* HomeViewController.swift */,
+				825FDD3223E06DD10046E3A2 /* HomeInteractor.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		825FDD3923E076F50046E3A2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				825FDD3A23E077290046E3A2 /* RajaOngkirAPI.swift */,
+				825FDD3F23E127C90046E3A2 /* RajaOngkirCoreData.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		825FDD3C23E077D00046E3A2 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				825FDD3D23E077F20046E3A2 /* ProvinceWorker.swift */,
+				825FDD8E23E146720046E3A2 /* CitiesWorker.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		825FDD7523E144950046E3A2 /* ListProvincesCities */ = {
+			isa = PBXGroup;
+			children = (
+				825FDD8223E1461E0046E3A2 /* ListProvinciesCitiesPresenter.swift */,
+				825FDD8323E1461E0046E3A2 /* ListProvinciesCitiesWorker.swift */,
+				825FDD8423E1461E0046E3A2 /* ListProvinciesCitiesRouter.swift */,
+				825FDD8523E1461E0046E3A2 /* ListProvinciesCitiesModels.swift */,
+				825FDD8623E1461E0046E3A2 /* ListProvinciesCitiesViewController.swift */,
+				825FDD8723E1461E0046E3A2 /* ListProvinciesCitiesInteractor.swift */,
+			);
+			path = ListProvincesCities;
+			sourceTree = "<group>";
+		};
 		82F2D91223E053FC00928095 = {
 			isa = PBXGroup;
 			children = (
@@ -81,14 +178,17 @@
 		82F2D91D23E053FC00928095 /* CekOngkir */ = {
 			isa = PBXGroup;
 			children = (
+				825FDD3C23E077D00046E3A2 /* Workers */,
+				825FDD3923E076F50046E3A2 /* Services */,
+				825FDD2B23E06D480046E3A2 /* Scenes */,
 				82F2D91E23E053FC00928095 /* AppDelegate.swift */,
 				82F2D92023E053FC00928095 /* SceneDelegate.swift */,
-				82F2D92223E053FC00928095 /* ViewController.swift */,
-				82F2D92423E053FC00928095 /* Main.storyboard */,
+				82F2D94423E055C900928095 /* Controller */,
+				82F2D94323E055AE00928095 /* View */,
 				82F2D92A23E053FD00928095 /* Assets.xcassets */,
-				82F2D92C23E053FD00928095 /* LaunchScreen.storyboard */,
 				82F2D92F23E053FD00928095 /* Info.plist */,
 				82F2D92723E053FC00928095 /* CekOngkir.xcdatamodeld */,
+				82F2D94A23E0567500928095 /* Models */,
 			);
 			path = CekOngkir;
 			sourceTree = "<group>";
@@ -100,6 +200,36 @@
 				82F2D93A23E053FD00928095 /* Info.plist */,
 			);
 			path = CekOngkirTests;
+			sourceTree = "<group>";
+		};
+		82F2D94323E055AE00928095 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82F2D92423E053FC00928095 /* Main.storyboard */,
+				82F2D92C23E053FD00928095 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82F2D94423E055C900928095 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				82F2D92223E053FC00928095 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		82F2D94A23E0567500928095 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				825FDD6D23E12CBF0046E3A2 /* Tbl_Province+CoreDataClass.swift */,
+				825FDD6E23E12CBF0046E3A2 /* Tbl_Province+CoreDataProperties.swift */,
+				825FDD6F23E12CBF0046E3A2 /* Tbl_City+CoreDataClass.swift */,
+				825FDD7023E12CBF0046E3A2 /* Tbl_City+CoreDataProperties.swift */,
+				82F2D94523E0565900928095 /* Province.swift */,
+				82F2D94723E0566700928095 /* Kota.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,9 +333,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				825FDD7223E12CBF0046E3A2 /* Tbl_Province+CoreDataProperties.swift in Sources */,
+				825FDD8823E1461E0046E3A2 /* ListProvinciesCitiesPresenter.swift in Sources */,
+				825FDD8923E1461E0046E3A2 /* ListProvinciesCitiesWorker.swift in Sources */,
+				825FDD7323E12CBF0046E3A2 /* Tbl_City+CoreDataClass.swift in Sources */,
+				825FDD3323E06DD10046E3A2 /* HomePresenter.swift in Sources */,
 				82F2D92323E053FC00928095 /* ViewController.swift in Sources */,
 				82F2D91F23E053FC00928095 /* AppDelegate.swift in Sources */,
+				825FDD3823E06DD10046E3A2 /* HomeInteractor.swift in Sources */,
+				825FDD8D23E1461E0046E3A2 /* ListProvinciesCitiesInteractor.swift in Sources */,
+				82F2D94823E0566700928095 /* Kota.swift in Sources */,
+				825FDD8C23E1461E0046E3A2 /* ListProvinciesCitiesViewController.swift in Sources */,
 				82F2D92123E053FC00928095 /* SceneDelegate.swift in Sources */,
+				825FDD8A23E1461E0046E3A2 /* ListProvinciesCitiesRouter.swift in Sources */,
+				825FDD3B23E077290046E3A2 /* RajaOngkirAPI.swift in Sources */,
+				825FDD3E23E077F20046E3A2 /* ProvinceWorker.swift in Sources */,
+				82F2D94623E0565900928095 /* Province.swift in Sources */,
+				825FDD8F23E146720046E3A2 /* CitiesWorker.swift in Sources */,
+				825FDD4023E127C90046E3A2 /* RajaOngkirCoreData.swift in Sources */,
+				825FDD3623E06DD10046E3A2 /* HomeModels.swift in Sources */,
+				825FDD8B23E1461E0046E3A2 /* ListProvinciesCitiesModels.swift in Sources */,
+				825FDD3723E06DD10046E3A2 /* HomeViewController.swift in Sources */,
+				825FDD7123E12CBF0046E3A2 /* Tbl_Province+CoreDataClass.swift in Sources */,
+				825FDD7423E12CBF0046E3A2 /* Tbl_City+CoreDataProperties.swift in Sources */,
+				825FDD3423E06DD10046E3A2 /* HomeWorker.swift in Sources */,
+				825FDD3523E06DD10046E3A2 /* HomeRouter.swift in Sources */,
 				82F2D92923E053FC00928095 /* CekOngkir.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

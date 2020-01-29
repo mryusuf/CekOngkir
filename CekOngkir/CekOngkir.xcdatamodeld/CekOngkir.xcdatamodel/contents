@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Tbl_City" representedClassName="Tbl_City" syncable="YES">
+        <attribute name="city_id" optional="YES" attributeType="String"/>
+        <attribute name="city_name" optional="YES" attributeType="String"/>
+        <attribute name="postal_code" optional="YES" attributeType="String"/>
+        <relationship name="province" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tbl_Province" inverseName="city" inverseEntity="Tbl_Province"/>
+    </entity>
+    <entity name="Tbl_Province" representedClassName="Tbl_Province" syncable="YES">
+        <attribute name="province" optional="YES" attributeType="String"/>
+        <attribute name="province_id" optional="YES" attributeType="String"/>
+        <relationship name="city" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tbl_City" inverseName="province" inverseEntity="Tbl_City"/>
+    </entity>
+    <elements>
+        <element name="Tbl_Province" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Tbl_City" positionX="-54" positionY="9" width="128" height="103"/>
+    </elements>
 </model>
